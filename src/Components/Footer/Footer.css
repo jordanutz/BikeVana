@@ -1,0 +1,45 @@
+.footer-container {
+  width: 100%;
+  height: auto;
+  background: rgb(24, 53, 88);
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  padding: 2em;
+  font-size: .75em;
+}
+
+.footer-container h1{
+  font-size:  1em;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.footer-row {
+  width: 60%;
+}
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-weight: bolder;
+}
+
+a:hover {
+  color: #00B7E6;
+  text-decoration: none;
+}
+
+.span-container {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 760px) {
+  .span-container {
+    font-size: .6rem;
+  }
+}

@@ -1,0 +1,189 @@
+.header-container {
+  list-style-type: none;
+  min-width: 90%;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: rgb(0, 97, 158);
+  color: white;
+  height: 3em;
+  font-size: .75em;
+}
+
+.header-column {
+  width: 85%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.header-links {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+  align-items: center;
+  width: 24%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+a:focus {
+  color: white;
+  text-decoration: none;
+}
+
+#login-link {
+  color: #00B7E6;
+}
+
+#login-link:hover {
+  color: #1B1B1B;
+}
+
+.dropdown-menu>li>a {
+  font-size: .75em;
+  color: #222;
+  font-weight: bolder;
+}
+
+.navigation-container {
+  min-width: 100%;
+  height: auto;
+}
+
+.navheader-logo {
+  display: flex;
+}
+
+.navheader-logo a {
+  font-family: "Tokyo 2097";
+  color: #00B7E6;
+}
+
+.navigation-logo {
+  width: 1.5em;
+  height: 1.5em;
+  position: relative;
+  top: -.50em;
+  margin-right: .10em;
+}
+
+.login-container {
+  width: 22em;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly
+}
+
+.navbar-nav {
+  margin: 0;
+}
+
+.navbar-inverse {
+  background: rgb(244, 248, 250);
+  border-radius: 0px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0;
+  padding: .60em;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.12), 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+  font-weight: bolder;
+}
+
+.navheader-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-container img {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  left: 0rem;
+  top: .5rem;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #00B7E6;
+  margin-right: 1em;
+  font-size: 2.5em;
+  font-family: "Tokyo 2097";
+}
+
+.navbar-inverse .navbar-toggle {
+    border: none;
+    color: #00B7E6;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #00B7E6;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus {
+  color: #00B7E6;
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: #00B7E6;
+  background: transparent;
+}
+
+.navbar-inverse .navbar-brand:focus {
+  color: #00B7E6;
+  background: transparent;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+  background: none;
+  color: none;
+}
+
+.navbar-inverse .navbar-toggle:focus {
+  background: none;
+  color: none;
+}
+
+.navbar-collapse {
+  background: rgb(244, 248, 250);
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background: #0069BF;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #1B1B1B;
+  font-size: .85em;
+  font-weight: bolder;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .header-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .header-links {
+    width: 35%;
+  }
+}

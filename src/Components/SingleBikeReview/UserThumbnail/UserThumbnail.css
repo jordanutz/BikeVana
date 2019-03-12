@@ -1,0 +1,15 @@
+.userthumbnail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thumbnail-image {
+  width: 6em;
+  height: 6em;
+  margin-bottom: .5rem;
+}
+
+.userthumbnail-container h1 {
+  font-weight: bolder;
+}

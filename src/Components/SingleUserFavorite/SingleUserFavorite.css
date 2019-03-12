@@ -1,0 +1,26 @@
+.singleuserfavorite-container {
+  width: 100%;
+  display: flex;
+  padding: 1em;
+  border-top: 1px solid #ddd;
+}
+
+.singleuserfavorite-image img {
+  width: 10em;
+  height: 6em;
+}
+
+.singleuserfavorite-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.singleuserfavorite-details a {
+  text-align: center;
+  color: #00B7E6;
+  font-size: 1.25rem;
+}

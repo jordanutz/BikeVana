@@ -1,0 +1,15 @@
+.bikethumbnail-container img {
+  width: 10em;
+  height: 6em;
+  margin-right: .25em;
+}
+
+.bikethumbnail-container h2 {
+  font-size: .80em;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.bikethumbnail-container a {
+  color: #00B7E6;
+}

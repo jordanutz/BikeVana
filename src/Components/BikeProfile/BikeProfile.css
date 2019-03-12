@@ -1,0 +1,162 @@
+.bikeprofile-container {
+  width: 100%;
+  height: auto;
+  padding: 5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bikeprofile-heading {
+  width: 100%;
+}
+
+.bikeprofile-image img {
+  width: 32em;
+  height: 20em;
+}
+
+.bikeprofile-grid {
+  margin-bottom: 2em;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-column-gap: 25px;
+}
+
+.bikeprofile-ratings span {
+  font-size: .85rem;
+}
+
+.bikeprofile-details {
+  display: flex;
+  flex-direction: column;
+  font-weight: bolder;
+  min-width: 20em;
+}
+
+.bikeprofile-image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bikeprofile-details h1 {
+  font-weight: bolder;
+  font-size: 1.25em;
+}
+
+.bikeprofile-details h2 {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 1.75em;
+  margin-bottom: .25em;
+}
+
+.bikeprofile-details h3 {
+  font-weight: bolder;
+  font-size: 1.5em;
+  margin-bottom: .75em;
+}
+
+.bikeprofile-purchase {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: .5em;
+  max-width: 50%;
+}
+
+.bikeprofile-purchase h4 {
+  margin-right: 2em;
+}
+
+.bikeprofile-quantity {
+  width: 5em;
+}
+
+.bikeprofile-additional {
+  max-width: 55em;
+  height: auto;
+  display: flex;
+  margin-top: 2em;
+  flex-direction: column;
+}
+
+.bikereviews-additional {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+
+.bikeprofile-additional h5 {
+  font-weight: bolder;
+  margin-bottom: .75em;
+  margin-right: 2em;
+}
+
+.cart-button {
+  background: #00B7E6;
+  color: white;
+  width: 100%;
+  margin-bottom: .5em;
+}
+
+.cart-button:hover {
+  background: #00a4cf;
+  color: white;
+}
+
+.bikeprofile-ratings {
+  width: 100%;
+  height: auto;
+}
+
+.displayedreviews-container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: black;
+}
+
+.bikeprofile-secondary {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addbike-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 850px) {
+  .bikeprofile-container {
+    padding: 2em
+  }
+  .bikeprofile-additional {
+    padding: 1em
+  }
+  .bikeprofile-image img {
+    width: 20em;
+    height: 12em;
+  }
+  .bikeprofile-image {
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+  .bikeprofile-ratings {
+    display: flex;
+    justify-content: space-between;
+  }
+  .bikeprofile-purchase {
+    width: 21em;
+    justify-content: space-evenly;
+  }
+  .bikeprofile-details h2 {
+    margin-bottom: .75em;
+  }
+  .bikeprofile-additional {
+    width: 100%;
+  }
+}

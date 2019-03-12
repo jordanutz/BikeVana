@@ -1,0 +1,53 @@
+.search-container {
+  max-width: 100%;
+  height: auto;
+}
+
+.background-search {
+  background-image: url('https://cdn.dribbble.com/users/68398/screenshots/3333492/cyclist.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.search-container {
+  min-width: 100%;
+  min-height: 50vh;
+  padding: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}
+
+.search-container h1 {
+  font-weight: bolder;
+  font-size: 1.25em;
+}
+
+.search-container h2 {
+  font-weight: bolder;
+  font-size: 3em;
+  letter-spacing: -.05em;
+}
+
+@media screen and (max-width: 760px) {
+  .search-container h1 {
+    font-size: .5em;
+  }
+  .search-container h2 {
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .search-container h1 {
+    font-size: 1.35em;
+  }
+  .search-container h2 {
+    font-size: 2.5em;
+  }
+}

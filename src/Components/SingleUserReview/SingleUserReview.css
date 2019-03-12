@@ -1,0 +1,20 @@
+.singleuserreview-container {
+  width: 100%;
+  display: flex;
+  padding: 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+.singleuserreview-details {
+  margin-left: .5em;
+}
+
+#border {
+  border-top: 1px solid #ddd;
+}
+
+.singleuserreview-thumbnail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
