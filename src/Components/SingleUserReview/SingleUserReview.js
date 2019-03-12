@@ -2,6 +2,7 @@ import React from 'react'
 import './SingleUserReview.css'
 import BikeThumbnail from './BikeThumbnail/BikeThumbnail'
 import StarRatings from 'react-star-ratings'
+import {connect} from 'react-redux'
 
 const SingleUserReview = (props) => {
 

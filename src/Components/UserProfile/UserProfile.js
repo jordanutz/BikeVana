@@ -3,7 +3,7 @@ import './UserProfile.css'
 import axios from 'axios'
 import {Grid, Row, Col, Image, Tabs, Tab} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {getReviews, getFavorites} from '../../redux/reducer'
+import {getFavorites} from '../../redux/reducer'
 import SingleUserReview from '../SingleUserReview/SingleUserReview'
 import SingleUserFavorite from '../SingleUserFavorite/SingleUserFavorite'
 
@@ -12,7 +12,7 @@ class UserProfile extends Component {
     super()
     this.state = {
       userProfile: null,
-      userReviews: null,
+      userReviews: [],
       userFavorites: null
     }
   }
@@ -39,7 +39,6 @@ class UserProfile extends Component {
       this.setState({
         userReviews: res.data
       })
-      this.props.getReviews(res.data)
     })
   }
 
@@ -57,7 +56,7 @@ class UserProfile extends Component {
     // console.log(this.state)
     // console.log(this.props)
     // console.log(this.props.reviews)
-    console.log(this.state.userReviews)
+    // console.log(this.state.userReviews)
     // console.log(this.state.userFavorites)
 
     let displayedUserReviews;
@@ -115,7 +114,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getReviews,
   getFavorites
 }
 

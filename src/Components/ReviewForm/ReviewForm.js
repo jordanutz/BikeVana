@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './ReviewForm.css'
 import {Button} from 'react-bootstrap';
-import {getReviews} from '../../redux/reducer'
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
@@ -179,8 +178,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {
-  getReviews
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Review);
+export default connect(mapStateToProps)(Review);

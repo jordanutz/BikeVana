@@ -5,11 +5,26 @@
   border-bottom: 1px solid #ccc;
   padding: 1rem 0;
   height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex {
   display: flex;
   flex-direction: column;
+
+  min-width: 16rem;
+}
+
+.review-options {
+  min-width: 12rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-self: flex-end;
+}
+
+.review-options button {
+  width: 5rem;
 }
 
 .singlebikereview-stats {

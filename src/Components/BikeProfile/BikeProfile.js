@@ -3,7 +3,7 @@ import './BikeProfile.css'
 
 // Redux
 import {connect} from 'react-redux'
-import {getBikeSearch, getReviews, getFavorites, logIn} from '../../redux/reducer'
+import {getBikeSearch, getFavorites, logIn} from '../../redux/reducer'
 
 // Components
 import SingleBikeReview from '../SingleBikeReview/SingleBikeReview'
@@ -20,13 +20,9 @@ class BikeProfile extends Component {
     super()
     this.state = {
       bike: {},
-      brand: 'BMC',
-      category: 'Leisure',
-      year: 2018,
-      toggleFavorite: false,
-      userFavorite: '',
-      quantity: 1,
-      rating: 0
+      reviews: [],
+      rating: 0,
+      userFavorite: ''
     }
   }
 
@@ -69,7 +65,7 @@ class BikeProfile extends Component {
 
   getBike = () => {
     axios.get(`/search/bike/${this.props.match.params.id}`).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.setState({
         bike: res.data.bike[0],
         rating: res.data.rating
@@ -111,16 +107,21 @@ class BikeProfile extends Component {
 // ------------ Reviews --------------
 
   setReviews = () => {
+    console.log(this.props.match.params.id)
     // console.log('set reviews')
     // console.log(this.props.match.params.id)
     axios.get(`/search/bike/reviews/${this.props.match.params.id}`).then(res => {
-      // console.log('set reviews 2')
-      // console.log(res.data)
       this.setState({
         reviews: res.data
       })
-      this.props.getReviews(res.data)
     })
+  }
+
+  deleteReview = (id) => {
+    console.log(id)
+    // axios.delete(`/search/bike/reviews/${id}`).then(res => {
+    //   console.log(res.data)
+    // })
   }
 
 
@@ -171,13 +172,16 @@ class BikeProfile extends Component {
 
     const displayRating = !this.state.rating ?
       <span>There are no reviews yet for this bike</span> :
-        <StarRatings
-        rating={this.state.rating}
-        starRatedColor="#00B7E6"
-        name="rating"
-        starSpacing="2px"
-        starDimension="20px"
-        />
+        <div className="ratings-stats">
+          <StarRatings
+          rating={this.state.rating}
+          starRatedColor="#00B7E6"
+          name="rating"
+          starSpacing="2px"
+          starDimension="20px"
+          />
+        <span>{this.state.reviews.length}</span>
+      </div>
 
     const addCart = this.props.user.auth0_id ?
       <div className="bikeprofile-purchase">
@@ -189,8 +193,9 @@ class BikeProfile extends Component {
       </div>
     : 'Please sign in to add to your cart!'
 
-    let displayedReviews = this.props.reviews.map( (review, id) => {
-      return <SingleBikeReview key={id} match={this.props.match} {...review} />
+    let displayedReviews = this.state.reviews.map( review => {
+      console.log(review)
+      return <SingleBikeReview key={review.id} match={this.props.match} {...review} deleteReview={this.deleteReview} />
     })
 
 
@@ -207,7 +212,7 @@ class BikeProfile extends Component {
               <h1>{this.state.bike && this.state.bike.brand}</h1>
               <h2>{this.state.bike && this.state.bike.name}</h2>
               <div className="bikeprofile-ratings">
-                <p>Rating: {displayRating}</p>
+                <p>{displayRating}</p>
                 <h3>${this.state.bike && this.state.bike.price}</h3>
                 {addCart}
               </div>
@@ -245,7 +250,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getBikeSearch,
   logIn,
-  getReviews,
   getFavorites
 }
 

@@ -27,7 +27,7 @@ class BikeThumbnail extends Component {
     return (
       <div className="bikethumbnail-container">
         <img src={this.state.bike && this.state.bike.image} alt="Bike Icon" />
-        <Link to={`/search/bikes/${this.props.id}`}><h2>{this.state.bike && this.state.bike.name}</h2></Link>
+        <Link to={`/search/bikes/${this.state.bike.id}`}><h2>{this.state.bike && this.state.bike.name}</h2></Link>
       </div>
     )
   }

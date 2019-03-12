@@ -10,6 +10,17 @@
   width: 100%;
 }
 
+.ratings-stats {
+  max-width: 9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bikereviews-additional {
+  margin-bottom: 1rem;
+}
+
 .bikeprofile-image img {
   width: 32em;
   height: 20em;

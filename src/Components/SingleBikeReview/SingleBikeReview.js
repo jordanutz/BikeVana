@@ -2,6 +2,8 @@ import React from 'react'
 import './SingleBikeReview.css'
 import UserThumbnail from './UserThumbnail/UserThumbnail'
 import StarRatings from 'react-star-ratings'
+import {Button} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
 const SingleBikeReview = (props) => {
 
@@ -45,8 +47,18 @@ const SingleBikeReview = (props) => {
               </div>
             </div>
       </div>
+      <div className="review-options">
+        <Button>Edit</Button>
+        <Button onClick={() => props.deleteReview(props.id)}>Delete</Button>
+      </div>
     </div>
   )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
 }
 
 export default SingleBikeReview

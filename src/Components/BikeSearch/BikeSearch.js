@@ -30,7 +30,7 @@ class BikeSearch extends Component {
 
   getBikes = () => {
     axios.get('/search/bikes').then( res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.props.getBikeSearch(res.data)
     })
   }
