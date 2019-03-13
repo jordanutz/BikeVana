@@ -44,7 +44,7 @@ class UserProfile extends Component {
 
   getFavorites = (id) => {
     axios.get(`/user/favorites/${this.props.match.params.id}`).then(res => {
-      // console.log(res.data)
+      console.log(res.data)
       this.setState({
         userFavorites: res.data
       })

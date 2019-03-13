@@ -9,6 +9,11 @@
   flex-direction: column;
 }
 
+#submit-edit {
+  width: auto;
+  margin-right: 1rem;
+}
+
 .flex {
   display: flex;
   flex-direction: column;

@@ -28,6 +28,10 @@ class SingleBikeReview extends Component {
         Edit Form
       </div>
 
+      const displaySubmit = this.state.editReview ?
+      <Button id="submit-edit">Save Changes</Button> :
+      <Button onClick={this.toggleEdit}>Edit</Button>
+
     return (
       <div className="singlebikereview-container">
         {displayEdit}
@@ -68,7 +72,7 @@ class SingleBikeReview extends Component {
               </div>
         </div>
         <div className="review-options">
-          <Button onClick={this.toggleEdit}>Edit</Button>
+          {displaySubmit}
           <Button onClick={() => this.props.deleteReview(this.props.id, this.props.bike_id)}>Delete</Button>
         </div>
       </div>

@@ -111,9 +111,6 @@ class Navigation extends Component {
               <NavItem eventKey={1} componentClass={Link} href='/bikes' to='/bikes'>
                 Search Bikes
               </NavItem>
-              <NavItem eventKey={2}>
-                Sell / Trade
-              </NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={1}>

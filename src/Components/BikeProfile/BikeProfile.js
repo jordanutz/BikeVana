@@ -162,13 +162,15 @@ class BikeProfile extends Component {
 
   render () {
 
-    const reviewbutton = this.props.user.auth0_id &&
+    const userReview = this.state.reviews.find(review => review.user_id)
+
+    const reviewbutton = this.props.user.auth0_id && !userReview ?
       <Link to = {{
           pathname: `/search/bikes/${this.props.match.params.id}/review`,
           state: {
             bike: this.state.bike
           }
-        }}><Button>Write Review</Button></Link>
+        }}><Button>Write Review</Button></Link> : null
 
     const addfavorite = this.props.user.auth0_id && <Button onClick={() => this.createFavorite(this.props.user.id, this.props.match.params.id, true)}>Add To Wish List</Button>
     const removefavorite = this.props.user.auth0_id && <Button onClick={() => this.deleteFavorite(this.props.user.id)}>Remove</Button>
