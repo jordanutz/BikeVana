@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
-import {getBikeSearch} from '../../redux/reducer'
+import {getBikeSearch} from '../../../redux/reducer'
 import {Link} from 'react-router-dom'
 import BikeModule from './BikeModule/BikeModule'
 import SearchFilter from './SearchFilter/SearchFilter'
@@ -44,9 +44,13 @@ class BikeSearch extends Component {
   render () {
     const {bikeSearch} = this.props
 
-    const displayedBikes = bikeSearch.map( (bike, id) => {
+    const displayedBikes = bikeSearch.map( bike => {
       // console.log('the bike!', bike.id)
-      return <Link to={`/search/bikes/${bike.id}`}><BikeModule key={id} {...bike} /></Link>
+      return (
+        <div key={bike.id}>
+          <Link to={`/search/bikes/${bike.id}`}><BikeModule {...bike} /></Link>
+        </div>
+      )
     })
 
     return (

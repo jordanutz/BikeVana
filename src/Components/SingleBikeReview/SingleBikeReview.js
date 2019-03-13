@@ -5,36 +5,123 @@ import StarRatings from 'react-star-ratings'
 import {Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 class SingleBikeReview extends Component {
   constructor() {
     super()
     this.state = {
-      editReview: false
+      editReview: false,
+      title: '',
+      description: '',
+      rating: null,
+      pros: '',
+      cons: '',
+      uses: ''
     }
   }
 
-  toggleEdit = () => {
+  changeRating = ( newRating, name ) => {
     this.setState({
-      editReview: !this.state.editReview
+      rating: newRating
+    });
+  }
+
+  toggleEdit = (rating) => {
+    this.setState({
+      editReview: !this.state.editReview,
+      title: this.props.title,
+      description: this.props.description,
+      rating: rating,
+      pros: this.props.pros,
+      cons: this.props.cons,
+      uses: this.props.best_uses
+    })
+  }
+
+  cancelEdit = () => {
+    this.setState({
+      editReview: false
+    })
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  submitEdit = (id, title, description, rating, pros, cons, uses, user, bike) => {
+
+    let finalEdit = {
+      title,
+      description,
+      rating,
+      pros,
+      cons,
+      uses,
+      user,
+      bike
+    }
+
+    axios.put(`/search/bike/reviews/${id}`, {finalEdit}).then(res => {
+      this.props.setReviews()
+    })
+    this.setState({
+      editReview: false,
+      title: '',
+      description: '',
+      rating: '',
+      pros: '',
+      cons: '',
+      uses: ''
     })
   }
 
   render () {
 
-    const rating = parseInt(this.props.rating)
-    const displayEdit = this.state.editReview &&
-      <div className="edit-form">
-        Edit Form
+    console.log(this.props)
+
+
+    const {editReview, title, description, rating, pros, cons, uses} = this.state
+    const originalRating = parseInt(this.props.rating)
+    console.log(this.props)
+
+
+    const displaySubmit = editReview ?
+      <div className="review-options">
+        <Button id="submit-edit" onClick={() => this.submitEdit(this.props.id, title, description, rating, pros, cons, uses, this.props.user_id, this.props.bike_id)}>Save Changes</Button>
+        <Button id="submit-edit" onClick={this.cancelEdit}>Cancel</Button>
+      </div> :
+      <div className="review-options">
+        <Button onClick={() => this.toggleEdit(originalRating)}>Edit</Button>
+        <Button onClick={() => this.props.deleteReview(this.props.id, this.props.bike_id)}>Delete</Button>
       </div>
 
-      const displaySubmit = this.state.editReview ?
-      <Button id="submit-edit">Save Changes</Button> :
-      <Button onClick={this.toggleEdit}>Edit</Button>
+    const displayStars = editReview ?
+      <StarRatings
+        id="StarRatings"
+        rating={editReview ? rating : originalRating}
+        starRatedColor="#00B7E6"
+        numberOfStars={5}
+        name='rating'
+        starDimension="30px"
+        starSpacing="4px"
+        changeRating={this.changeRating}
+        starHoverColor="black"
+      /> :
+      <StarRatings
+        id="StarRatings"
+        rating={originalRating}
+        starRatedColor="#00B7E6"
+        numberOfStars={5}
+        name='rating'
+        starDimension="30px"
+        starSpacing="4px"
+      />
 
     return (
       <div className="singlebikereview-container">
-        {displayEdit}
         <div className="singlebike-grid">
 
           <div className="singlebikeprofile-thumbnail">
@@ -44,37 +131,57 @@ class SingleBikeReview extends Component {
             <div className="singlebikereview-stats">
               <div className="singlebikereview-single">
                   <span>
-                    <StarRatings
-                      id="StarRatings"
-                      rating={rating}
-                      starRatedColor="#00B7E6"
-                      numberOfStars={5}
-                      name='rating'
-                      starDimension="30px"
-                      starSpacing="4px"
-                    />
+                    {displayStars}
                   </span>
-                  <h2>{this.props.title}</h2>
-                  <h3>{this.props.description}</h3>
+                  <input className={editReview ? "show-input" : "none"}
+                    name="title"
+                    type="text"
+                    placeholder={editReview && this.props.title}
+                    value={editReview ? title : this.props.title}
+                    onChange={(e) => this.handleChange(e)}/>
+
+                  <input className={editReview ? "show-input" : "none"}
+                    name="description"
+                    type="text"
+                    placeholder={editReview && this.props.description}
+                    value={editReview ? description : this.props.description}
+                    onChange={(e) => this.handleChange(e)}/>
                 </div>
 
                 <div className="flex">
                   <div className="singlebikereview-single">
-                    <h2> Pros: </h2> <span>{this.props.pros}</span>
+                    <h2> Pros: </h2>
+                      <input className={editReview ? "show-input" : "none"}
+                        name="pros"
+                        type="text"
+                        placeholder={editReview && this.props.pros}
+                        value={editReview ? pros : this.props.pros}
+                        onChange={(e) => this.handleChange(e)}/>
+
                   </div>
                   <div className="singlebikereview-single">
-                    <h2>Cons: </h2> <span>{this.props.cons}</span>
-                  </div>
+                    <h2>Cons: </h2>
+                      <input className={editReview ? "show-input" : "none"}
+                        name="cons"
+                        type="text"
+                        placeholder={editReview && this.props.cons}
+                        value={editReview ? cons : this.props.cons}
+                        onChange={(e) => this.handleChange(e)}/>
+
                   <div className="singlebikereview-single">
-                    <h2>Best Uses:</h2> <span>{this.props.best_uses}</span>
+                    <h2>Best Uses</h2>
+                      <input className={editReview ? "show-input" : "none"}
+                        name="uses"
+                        type="text"
+                        placeholder={editReview && this.props.best_uses}
+                        value={editReview ? uses : this.props.best_uses}
+                        onChange={(e) => this.handleChange(e)}/>
                   </div>
                 </div>
               </div>
-        </div>
-        <div className="review-options">
-          {displaySubmit}
-          <Button onClick={() => this.props.deleteReview(this.props.id, this.props.bike_id)}>Delete</Button>
-        </div>
+            </div>
+          </div>
+        {displaySubmit}
       </div>
     )
   }

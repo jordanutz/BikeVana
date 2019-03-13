@@ -1,7 +1,7 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Homepage from './Components/Homepage/Homepage'
-import BikeSearch from './Components/BikeSearch/BikeSearch'
+import BikeSearch from './Components/BikeProfile/BikeSearch/BikeSearch'
 import BikeProfile from './Components/BikeProfile/BikeProfile'
 import UserProfile from './Components/UserProfile/UserProfile'
 import ReviewForm from './Components/ReviewForm/ReviewForm'
