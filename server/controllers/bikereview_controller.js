@@ -31,8 +31,8 @@ module.exports = {
   delete: (req, res) => {
     const db = req.app.get('db')
     const {id} = req.params
-    const {bike} = req.query
-    db.delete_reviews([id, bike.id])
+
+    db.delete_reviews([id, req.query.bike])
     .then(reviews => res.status(200).send(reviews))
     .catch(error => console.log('Unexpected error in deleting review', error))
   }

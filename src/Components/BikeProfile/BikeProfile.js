@@ -22,7 +22,8 @@ class BikeProfile extends Component {
       bike: {},
       reviews: [],
       rating: 0,
-      userFavorite: ''
+      userFavorite: '',
+      quantity: 1
     }
   }
 
@@ -117,9 +118,10 @@ class BikeProfile extends Component {
     })
   }
 
-  deleteReview = (id) => {
-    console.log(id)
-    axios.delete(`/search/bike/reviews/${id}?bike=${this.props.match.params.id}`).then(res => {
+  deleteReview = (id, bike) => {
+    // console.log(bike)
+    axios.delete(`/search/bike/reviews/${id}?bike=${bike}`).then(res => {
+      console.log(res.data)
       this.setState({
         reviews: res.data
       })
@@ -160,7 +162,6 @@ class BikeProfile extends Component {
 
   render () {
 
-
     const reviewbutton = this.props.user.auth0_id &&
       <Link to = {{
           pathname: `/search/bikes/${this.props.match.params.id}/review`,
@@ -197,9 +198,8 @@ class BikeProfile extends Component {
 
     let displayedReviews = this.state.reviews.map( review => {
       console.log(review)
-      return <SingleBikeReview key={review.id} match={this.props.match} {...review} deleteReview={this.deleteReview} />
+      return <SingleBikeReview key={review.id} match={this.props.match} {...review} deleteReview={this.deleteReview} bike={this.state.bike} />
     })
-
 
     return (
       <div className="bikeprofile-container">
