@@ -107,7 +107,7 @@ class BikeProfile extends Component {
 // ------------ Reviews --------------
 
   setReviews = () => {
-    console.log(this.props.match.params.id)
+    // console.log(this.props.match.params.id)
     // console.log('set reviews')
     // console.log(this.props.match.params.id)
     axios.get(`/search/bike/reviews/${this.props.match.params.id}`).then(res => {
@@ -119,9 +119,11 @@ class BikeProfile extends Component {
 
   deleteReview = (id) => {
     console.log(id)
-    // axios.delete(`/search/bike/reviews/${id}`).then(res => {
-    //   console.log(res.data)
-    // })
+    axios.delete(`/search/bike/reviews/${id}?bike=${this.props.match.params.id}`).then(res => {
+      this.setState({
+        reviews: res.data
+      })
+    })
   }
 
 

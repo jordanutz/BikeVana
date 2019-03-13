@@ -23,7 +23,7 @@ module.exports = {
     const db = req.app.get('db')
     const {id} = req.params;
     const {title, description, rating, pros, cons, best_uses, bike_id} = req.body.reviewInput
-    db.update_reviews([params.id, title, description, rating, pros, cons, best_uses, bike_id])
+    db.update_reviews([id, title, description, rating, pros, cons, best_uses, bike_id])
     .then(review => res.status(200).send(review))
     .catch(error => console.log('Unxpected error in updating review'))
   },
@@ -31,8 +31,9 @@ module.exports = {
   delete: (req, res) => {
     const db = req.app.get('db')
     const {id} = req.params
-    db.delete_reviews([id])
-    .then(review => res.status(200).send(review))
+    const {bike} = req.query
+    db.delete_reviews([id, bike.id])
+    .then(reviews => res.status(200).send(reviews))
     .catch(error => console.log('Unexpected error in deleting review', error))
   }
 }
