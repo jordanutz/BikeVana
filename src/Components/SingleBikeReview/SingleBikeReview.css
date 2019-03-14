@@ -17,8 +17,11 @@
 .flex {
   display: flex;
   flex-direction: column;
-
   min-width: 16rem;
+}
+
+#bikereview-width {
+  max-width: 30rem;
 }
 
 .review-options {

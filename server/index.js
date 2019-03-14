@@ -119,7 +119,7 @@ app.get('/user/reviews/:id', userreviews.get)
 
 // Reviews For Specific Bike
 app.get('/search/bike/reviews/:id', reviews.get)
-app.post('/search/bike/reviews/:id', reviews.post)
+app.post('/search/bike/reviews', reviews.post)
 app.put('/search/bike/reviews/:id', reviews.update)
 app.delete('/search/bike/reviews/:id', reviews.delete)
 

@@ -1,6 +1,7 @@
 const initialState = {
   bikeSearch: [],
   cart: [],
+  reviews: [],
   favorites: [],
   user: {},
   order: {}
@@ -9,6 +10,7 @@ const initialState = {
 const GET_BIKE_SEARCH = 'GET_BIKE_SEARCH',
       LOGGED_IN = 'LOGGED_IN',
       LOGGED_OUT = 'LOGGED_OUT',
+      GET_REVIEWS = 'GET_REVIEWS',
       GET_FAVORITES = 'GET_FAVORITES',
       GET_CART = 'GET_CART',
       GET_ORDER = 'GET_ORDER'
@@ -21,6 +23,8 @@ export default function reducer (state = initialState, action) {
       return {...state, user: action.payload}
     case LOGGED_OUT:
       return {...state, user: null}
+    case GET_REVIEWS:
+      return {...state, reviews: action.payload}
     case GET_FAVORITES:
       return {...state, favorites: action.payload}
     case GET_ORDER:
@@ -53,6 +57,12 @@ export function logIn (user) {
 export function logOut () {
   return {
     type: LOGGED_OUT
+  }
+}
+
+export function getReviews (reviews) {
+  return {
+    type: GET_REVIEWS, payload: reviews
   }
 }
 

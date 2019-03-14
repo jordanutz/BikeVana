@@ -47,7 +47,7 @@ create table reviews (
   cons text not null,
   best_uses text not null,
   date_posted text not null,
-  user_id integer references reviews(id),
+  user_id integer references users(id),
   bike_id integer references bikes(id)
 );
 

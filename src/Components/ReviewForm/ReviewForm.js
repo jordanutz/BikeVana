@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './ReviewForm.css'
 import {Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {getReviews} from '../../redux/reducer'
 import axios from 'axios';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import StarRatings from 'react-star-ratings'
@@ -43,22 +44,21 @@ class Review extends Component {
       user_id,
       bike_id
     }
-    axios.post(`/search/bike/reviews/${this.props.match.params.id}`, {reviewInput}).then( res => {
-      // console.log(res)
+    axios.post('/search/bike/reviews', {reviewInput}).then( res => {
       // this.props.getReviews(res.data)
       this.props.history.push(`/search/bikes/${this.props.match.params.id}`)
     }).catch(error => console.log(error))
   }
 
   handleTitle = (e) => {
-    console.log(e)
+    // console.log(e)
     this.setState({
       title: e.target.value
     })
   }
 
   handleDescription = (e) => {
-    console.log(e)
+    // console.log(e)
     this.setState({
       description: e.target.value
     })
@@ -178,4 +178,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Review);
+const mapDispatchToProps = {
+  getReviews
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Review);

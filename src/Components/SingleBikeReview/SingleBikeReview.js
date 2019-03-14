@@ -6,6 +6,9 @@ import {Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {getReviews} from '../../redux/reducer'
+
+
 
 class SingleBikeReview extends Component {
   constructor() {
@@ -65,7 +68,8 @@ class SingleBikeReview extends Component {
     }
 
     axios.put(`/search/bike/reviews/${id}`, {finalEdit}).then(res => {
-      this.props.setReviews()
+      console.log(res.data)
+      this.props.getReviews(res.data)
     })
     this.setState({
       editReview: false,
@@ -120,6 +124,47 @@ class SingleBikeReview extends Component {
         starSpacing="4px"
       />
 
+    const displayTitle = !editReview ? <h2>{this.props.title}</h2> :
+      <input className={editReview ? "show-input" : "none"}
+        name="title"
+        type="text"
+        placeholder={editReview && this.props.title}
+        value={editReview ? title : this.props.title}
+        onChange={(e) => this.handleChange(e)}/>
+
+      const displayDescription = !editReview ? <span>{this.props.description}</span> :
+      <input className={editReview ? "show-input" : "none"}
+        name="description"
+        type="text"
+        placeholder={editReview && this.props.description}
+        value={editReview ? description : this.props.description}
+        onChange={(e) => this.handleChange(e)}/>
+
+      const displayPros = !editReview ? <span>{this.props.pros}</span> :
+        <input className={editReview ? "show-input" : "none"}
+          name="pros"
+          type="text"
+          placeholder={editReview && this.props.pros}
+          value={editReview ? pros : this.props.pros}
+          onChange={(e) => this.handleChange(e)}/>
+
+      const displayCons = !editReview ? <span>{this.props.cons}</span> :
+        <input className={editReview ? "show-input" : "none"}
+          name="cons"
+          type="text"
+          placeholder={editReview && this.props.cons}
+          value={editReview ? cons : this.props.cons}
+          onChange={(e) => this.handleChange(e)}/>
+
+      const displayUses = !editReview ? <span>{this.props.best_uses}</span> :
+        <input className={editReview ? "show-input" : "none"}
+          name="uses"
+          type="text"
+          placeholder={editReview && this.props.best_uses}
+          value={editReview ? uses : this.props.best_uses}
+          onChange={(e) => this.handleChange(e)}/>
+
+
     return (
       <div className="singlebikereview-container">
         <div className="singlebike-grid">
@@ -129,53 +174,24 @@ class SingleBikeReview extends Component {
           </div>
 
             <div className="singlebikereview-stats">
-              <div className="singlebikereview-single">
+              <div id="bikereview-width" className="singlebikereview-single">
                   <span>
                     {displayStars}
                   </span>
-                  <input className={editReview ? "show-input" : "none"}
-                    name="title"
-                    type="text"
-                    placeholder={editReview && this.props.title}
-                    value={editReview ? title : this.props.title}
-                    onChange={(e) => this.handleChange(e)}/>
-
-                  <input className={editReview ? "show-input" : "none"}
-                    name="description"
-                    type="text"
-                    placeholder={editReview && this.props.description}
-                    value={editReview ? description : this.props.description}
-                    onChange={(e) => this.handleChange(e)}/>
+                  {displayTitle}
+                  {displayDescription}
                 </div>
-
                 <div className="flex">
                   <div className="singlebikereview-single">
                     <h2> Pros: </h2>
-                      <input className={editReview ? "show-input" : "none"}
-                        name="pros"
-                        type="text"
-                        placeholder={editReview && this.props.pros}
-                        value={editReview ? pros : this.props.pros}
-                        onChange={(e) => this.handleChange(e)}/>
-
+                    {displayPros}
                   </div>
                   <div className="singlebikereview-single">
                     <h2>Cons: </h2>
-                      <input className={editReview ? "show-input" : "none"}
-                        name="cons"
-                        type="text"
-                        placeholder={editReview && this.props.cons}
-                        value={editReview ? cons : this.props.cons}
-                        onChange={(e) => this.handleChange(e)}/>
-
+                    {displayCons}
                   <div className="singlebikereview-single">
                     <h2>Best Uses</h2>
-                      <input className={editReview ? "show-input" : "none"}
-                        name="uses"
-                        type="text"
-                        placeholder={editReview && this.props.best_uses}
-                        value={editReview ? uses : this.props.best_uses}
-                        onChange={(e) => this.handleChange(e)}/>
+                    {displayUses}
                   </div>
                 </div>
               </div>
@@ -193,4 +209,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default SingleBikeReview
+const mapDispatchToProps = {
+  getReviews
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleBikeReview)

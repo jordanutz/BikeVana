@@ -3,7 +3,7 @@ import './BikeProfile.css'
 
 // Redux
 import {connect} from 'react-redux'
-import {getBikeSearch, getFavorites, logIn} from '../../redux/reducer'
+import {getBikeSearch, getFavorites, logIn, getReviews} from '../../redux/reducer'
 
 // Components
 import SingleBikeReview from '../SingleBikeReview/SingleBikeReview'
@@ -20,7 +20,6 @@ class BikeProfile extends Component {
     super()
     this.state = {
       bike: {},
-      reviews: [],
       rating: 0,
       userFavorite: '',
       quantity: 1
@@ -112,9 +111,7 @@ class BikeProfile extends Component {
     // console.log('set reviews')
     // console.log(this.props.match.params.id)
     axios.get(`/search/bike/reviews/${this.props.match.params.id}`).then(res => {
-      this.setState({
-        reviews: res.data
-      })
+      this.props.getReviews(res.data)
     })
   }
 
@@ -122,9 +119,7 @@ class BikeProfile extends Component {
     // console.log(bike)
     axios.delete(`/search/bike/reviews/${id}?bike=${bike}`).then(res => {
       console.log(res.data)
-      this.setState({
-        reviews: res.data
-      })
+      this.props.getReviews(res.data)
     })
   }
 
@@ -162,7 +157,7 @@ class BikeProfile extends Component {
 
   render () {
 
-    const userReview = this.state.reviews.find(review => review.user_id)
+    const userReview = this.props.reviews.find(review => review.user_id)
 
     const reviewbutton = this.props.user.auth0_id && !userReview ?
       <Link to = {{
@@ -185,7 +180,7 @@ class BikeProfile extends Component {
           starSpacing="2px"
           starDimension="20px"
           />
-        <span>{this.state.reviews.length}</span>
+        <span>{this.props.reviews.length}</span>
       </div>
 
     const addCart = this.props.user.auth0_id ?
@@ -198,9 +193,13 @@ class BikeProfile extends Component {
       </div>
     : 'Please sign in to add to your cart!'
 
-    let displayedReviews = this.state.reviews.map( review => {
-      console.log(review)
-      return <SingleBikeReview key={review.id} match={this.props.match} {...review} deleteReview={this.deleteReview} bike={this.state.bike} />
+    let displayedReviews = this.props.reviews.map( review => {
+      return <SingleBikeReview key={review.id}
+        match={this.props.match}
+        {...review}
+        deleteReview={this.deleteReview}
+        bike={this.state.bike}
+        />
     })
 
     return (
@@ -253,6 +252,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getBikeSearch,
+  getReviews,
   logIn,
   getFavorites
 }
