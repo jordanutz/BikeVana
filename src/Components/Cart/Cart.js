@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
+import CheckoutForm from '../CheckoutForm/CheckoutForm'
 import './Cart.css'
-
-import axios from 'axios'
-import {Button} from 'react-bootstrap'
 
 //Redux
 import {connect} from 'react-redux'
 import {getCart} from '../../redux/reducer'
+
+// Packages
+import {Elements, StripeProvider} from 'react-stripe-elements'
+import axios from 'axios'
+import {Button} from 'react-bootstrap'
 
 class Cart extends Component {
   constructor () {
@@ -30,8 +33,10 @@ class Cart extends Component {
     })
   }
 
-  deleteCart = () => {
-    console.log('hit')
+  deleteCart = (id) => {
+    axios.delete(`/user/cart/${id}`).then(res => {
+      console.log(res.data)
+    })
   }
 
   render () {
@@ -44,11 +49,11 @@ class Cart extends Component {
     const displayTotal = total && <span>${total}</span>
 
     const displayBike = cart.map(item => {
-      // console.log(item)
+      console.log(item)
       return (
         <div className="CartItem">
           <div className="ItemImage">
-            <img src={item.image} />
+            <img src={item.image} alt="Cart Bike" />
           </div>
           <div className="ItemDetails">
             <h1>{item.name}</h1>
@@ -66,7 +71,7 @@ class Cart extends Component {
             <h1>${item.price}</h1>
           </div>
           <div className="ItemDetails">
-            <Button onClick={this.deleteCart}>Remove</Button>
+            <Button onClick={() => this.deleteCart(item.cart_id)}>Remove</Button>
           </div>
         </div>
       )
@@ -94,6 +99,7 @@ class Cart extends Component {
             <h2 id="taxBorder">Estimated Taxes: {displayTax}</h2>
             <h3>{displayTotal}</h3>
           </div>
+          <Button>Pay Now</Button>
         </div>
       </div>
     )

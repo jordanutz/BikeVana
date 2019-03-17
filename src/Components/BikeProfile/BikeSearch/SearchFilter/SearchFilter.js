@@ -24,7 +24,7 @@ class SearchFilter extends Component {
           <h1>Filters</h1>
         </div>
 
-        <Button id="filter-buttons" onClick={ () => this.setState({ openBrand: !this.state.openBrand})}>Brand <img src={Arrow} /> </Button>
+        <Button id="filter-buttons" onClick={ () => this.setState({ openBrand: !this.state.openBrand})}>Brand <img src={Arrow} alt="Dropdown Arrow" /> </Button>
         <Collapse in={this.state.openBrand}>
           <div className="brand-filter">
            <Well>
@@ -37,7 +37,7 @@ class SearchFilter extends Component {
          </div>
        </Collapse>
 
-       <Button id="filter-buttons" onClick={ () => this.setState({ openCategory: !this.state.openCategory})}>Category <img src={Arrow} /> </Button>
+       <Button id="filter-buttons" onClick={ () => this.setState({ openCategory: !this.state.openCategory})}>Category <img src={Arrow} alt="Dropdown Arrow" /> </Button>
        <Collapse in={this.state.openCategory}>
          <div className="brand-filter">
           <Well>
@@ -52,7 +52,7 @@ class SearchFilter extends Component {
         </div>
       </Collapse>
 
-      <Button id="filter-buttons" onClick={ () => this.setState({ openGender: !this.state.openGender})}>Gender <img src={Arrow} /> </Button>
+      <Button id="filter-buttons" onClick={ () => this.setState({ openGender: !this.state.openGender})}>Gender <img src={Arrow} alt="Dropdown Arrow" /> </Button>
       <Collapse in={this.state.openGender}>
         <div className="brand-filter">
          <Well>
@@ -65,7 +65,7 @@ class SearchFilter extends Component {
        </div>
      </Collapse>
 
-     <Button id="filter-buttons" onClick={ () => this.setState({ openColor: !this.state.openColor})}>Color <img src={Arrow} /> </Button>
+     <Button id="filter-buttons" onClick={ () => this.setState({ openColor: !this.state.openColor})}>Color <img src={Arrow} alt="Dropdown Arrow" /> </Button>
      <Collapse in={this.state.openColor}>
        <div className="brand-filter">
         <Well>
@@ -81,7 +81,7 @@ class SearchFilter extends Component {
       </div>
     </Collapse>
 
-    <Button id="filter-buttons" onClick={ () => this.setState({ openPrice: !this.state.openPrice})}>Price <img src={Arrow} /> </Button>
+    <Button id="filter-buttons" onClick={ () => this.setState({ openPrice: !this.state.openPrice})}>Price <img src={Arrow} alt="Dropdown Arrow" /> </Button>
     <Collapse in={this.state.openPrice}>
       <div className="brand-filter">
        <Well>
@@ -95,7 +95,7 @@ class SearchFilter extends Component {
      </div>
    </Collapse>
 
-   <Button id="filter-buttons" onClick={ () => this.setState({ openYear: !this.state.openYear})}>Year <img src={Arrow} /> </Button>
+   <Button id="filter-buttons" onClick={ () => this.setState({ openYear: !this.state.openYear})}>Year <img src={Arrow} alt="Dropdown Arrow" /> </Button>
    <Collapse in={this.state.openYear}>
      <div className="brand-filter">
       <Well>

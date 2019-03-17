@@ -33,5 +33,13 @@ module.exports = {
 
     })
     .catch(error => console.log('Unexpected error in getting cart', error))
+  },
+  deleteItem: (req, res) => {
+    const db = req.app.get('db')
+    const {id} = req.params
+    console.log(id)
+    db.delete_cart(id)
+    .then(cart => console.log(cart))
+    .catch(error => console.log(error))
   }
 }

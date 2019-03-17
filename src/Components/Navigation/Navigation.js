@@ -51,7 +51,7 @@ class Navigation extends Component {
      // console.log(this.props)
      const userLinks = this.props.user.auth0_id ?
       <div className="login-container">
-        <Link to={`/users/${this.props.user.id}/cart`}><img src={Cart} /></Link>
+        <Link to={`/users/${this.props.user.id}/cart`}><img src={Cart} alt="Cart Icon"/></Link>
         <Link to={`/users/profile/${this.props.user.id}`} id="login-link">My Account</Link>
         <Link to='/' id="login-link" onClick={this.logout}>Logout</Link>
       </div>

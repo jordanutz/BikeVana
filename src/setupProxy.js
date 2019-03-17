@@ -7,5 +7,6 @@ module.exports = function(app) {
       '/auth',
       '/search',
       '/user',
+      '/charge'
     ], { target: 'http://localhost:1993/' }));
   };

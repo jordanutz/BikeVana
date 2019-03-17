@@ -4,11 +4,8 @@ import UserThumbnail from './UserThumbnail/UserThumbnail'
 import StarRatings from 'react-star-ratings'
 import {Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import axios from 'axios'
 import {getReviews} from '../../redux/reducer'
-
-
 
 class SingleBikeReview extends Component {
   constructor() {
