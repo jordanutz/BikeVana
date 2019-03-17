@@ -50,6 +50,7 @@ class BikeProfile extends Component {
    }
 
   addCart = (order, bike, quantity) => {
+    console.log(order, bike, quantity)
     const addedItem = {
       order,
       bike,
@@ -187,7 +188,7 @@ class BikeProfile extends Component {
       <div className="bikeprofile-purchase">
         <h4>Quantity: <NumericInput min={1} value={this.state.quantity} onChange={this.inputQuantity} /> </h4>
         <div className="addbike-buttons">
-          <Button className="cart-button" onClick={() => this.addCart(this.props.order.id, this.props.bikeSearch[0].id, this.state.quantity)}>Add To Cart</Button>
+          <Button className="cart-button" onClick={() => this.addCart(this.props.order.id, this.props.match.params.id, this.state.quantity)}>Add To Cart</Button>
           {this.state.userFavorite.length ? removefavorite : addfavorite }
         </div>
       </div>

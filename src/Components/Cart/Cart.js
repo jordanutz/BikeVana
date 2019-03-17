@@ -1,33 +1,24 @@
 import React, {Component} from 'react'
 import './Cart.css'
 
-import {connect} from 'react-redux'
 import axios from 'axios'
+import {Button} from 'react-bootstrap'
 
+//Redux
+import {connect} from 'react-redux'
+import {getCart} from '../../redux/reducer'
 
 class Cart extends Component {
-  constructor () {
-    super()
-    this.state = {
-      cart: []
-    }
-  }
 
   componentDidMount () {
     axios.get(`/user/cart?user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
-      this.setState({
-        cart: res.data
-      })
+      this.props.getCart(res.data)
     })
   }
 
-
   render () {
 
-
-
-    console.log(this.state.cart)
-    const {cart} = this.state
+    const {cart} = this.props
 
     const displayBike = cart.map(item => {
       console.log(item)
@@ -49,10 +40,10 @@ class Cart extends Component {
             <h1>{item.quantity}</h1>
           </div>
           <div className="ItemDetails">
-            <h1>{item.price}</h1>
+            <h1>${item.price}</h1>
           </div>
           <div className="ItemDetails">
-            <button>Remove</button>
+            <Button>Remove</Button>
           </div>
         </div>
       )
@@ -75,6 +66,8 @@ class Cart extends Component {
           <div className="ShoppingCartBody">
             {displayBike}
           </div>
+          <div className="ShoppingCartFoooter">
+          </div>
         </div>
       </div>
     )
@@ -84,8 +77,13 @@ class Cart extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    order: state.order
+    order: state.order,
+    cart: state.cart
   }
 }
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = {
+  getCart
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

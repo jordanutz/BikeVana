@@ -11,7 +11,7 @@ module.exports = {
     const db = req.app.get('db')
     const {title, description, rating, pros, cons, best_uses, user_id, bike_id} = req.body.reviewInput
     let date_posted = new Date();
-    console.log(title, description, rating, date_posted, pros, cons, best_uses, user_id, bike_id)
+    // console.log(title, description, rating, date_posted, pros, cons, best_uses, user_id, bike_id)
     // console.log('hit post')
     db.create_reviews([title, description, rating, date_posted, pros, cons, best_uses, user_id, bike_id])
     .then(reviews => res.status(200).send(reviews))

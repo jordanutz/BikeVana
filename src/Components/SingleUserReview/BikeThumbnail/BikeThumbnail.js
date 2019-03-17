@@ -13,7 +13,6 @@ class BikeThumbnail extends Component {
 
   componentDidMount () {
     axios.get(`/search/bike/${this.props.id}`).then( res => {
-      console.log(res.data)
       this.setState({
         bike: res.data.bike[0]
       })
@@ -21,8 +20,6 @@ class BikeThumbnail extends Component {
   }
 
   render () {
-
-    console.log(this.state)
 
     return (
       <div className="bikethumbnail-container">

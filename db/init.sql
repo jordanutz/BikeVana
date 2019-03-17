@@ -57,10 +57,10 @@ create table orders (
   paid boolean
 )
 
-create table order_items (
+create table cart (
   id serial primary key,
-  order_id references orders(id),
-  bike_id references bikes(id),
+  order_id integer references orders(id),
+  bike_id integer references bikes(id),
   quantity integer
 )
 

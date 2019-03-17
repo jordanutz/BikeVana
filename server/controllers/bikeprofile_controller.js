@@ -4,7 +4,7 @@ module.exports = {
     const {id} = req.params
     db.get_bike(id)
     .then(bike => {
-      console.log(bike)
+      // console.log(bike)
       db.get_ratings(bike[0].id).then(rating => {
 
         let finalRating = !rating[0].average ? 0 : rating[0].average

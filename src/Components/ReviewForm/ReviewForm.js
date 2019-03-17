@@ -26,10 +26,10 @@ class Review extends Component {
   }
 
   changeRating = (newRating, name) => {
-      this.setState({
-        rating: newRating
-      });
-    }
+    this.setState({
+      rating: newRating
+    });
+  }
 
 
   createReview = (title, description, rating, date_posted, pros, cons, best_uses, user_id, bike_id) => {
@@ -91,7 +91,6 @@ class Review extends Component {
   }
 
   render () {
-    console.log(this.state.rating)
 
     const {title, description, rating, pros, cons, uses, date} = this.state
     const {user} = this.props
@@ -162,7 +161,6 @@ class Review extends Component {
         </div>
 
         <div className="submitreview-container">
-
           <Button onClick={() => this.createReview(title, description, rating, date, pros, cons, uses, user.id, this.props.match.params.id)}>Submit Review</Button>
         </div>
       </div>
