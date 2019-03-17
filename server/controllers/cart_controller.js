@@ -14,7 +14,19 @@ module.exports = {
     const db = req.app.get('db')
     const {user, order} = req.query
     db.get_cart([user, order])
-    .then(cart => res.status(200).send(cart))
+    .then(cart => {
+      let total = cart.reduce( (total, item) => {
+        return total + (parseInt(item.price) * item.quantity)
+      }, 0)
+
+      let userCart = {
+        cart,
+        total
+      }
+
+      res.status(200).send(userCart)
+
+    })
     .catch(error => console.log('Unexpected error in getting cart', error))
   }
 }

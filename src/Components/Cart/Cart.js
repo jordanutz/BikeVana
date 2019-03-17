@@ -9,16 +9,27 @@ import {connect} from 'react-redux'
 import {getCart} from '../../redux/reducer'
 
 class Cart extends Component {
+  constructor () {
+    super()
+    this.state = {
+      total: null
+    }
+  }
 
   componentDidMount () {
     axios.get(`/user/cart?user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
-      this.props.getCart(res.data)
+      this.props.getCart(res.data.cart)
+      this.setState({
+        total: res.data.total
+      })
     })
   }
 
   render () {
 
     const {cart} = this.props
+
+    const displayTotal = this.state.total & this.state.total
 
     const displayBike = cart.map(item => {
       console.log(item)
@@ -67,6 +78,7 @@ class Cart extends Component {
             {displayBike}
           </div>
           <div className="ShoppingCartFoooter">
+            {displayTotal}
           </div>
         </div>
       </div>
