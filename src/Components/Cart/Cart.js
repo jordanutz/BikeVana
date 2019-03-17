@@ -12,6 +12,8 @@ class Cart extends Component {
   constructor () {
     super()
     this.state = {
+      subtotal: null,
+      tax: null,
       total: null
     }
   }
@@ -19,20 +21,30 @@ class Cart extends Component {
   componentDidMount () {
     axios.get(`/user/cart?user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
       this.props.getCart(res.data.cart)
+      console.log(res.data.total)
       this.setState({
-        total: res.data.total
+        subtotal: res.data.cartTotal,
+        tax: res.data.taxTotal,
+        total: res.data.orderTotal
       })
     })
+  }
+
+  deleteCart = () => {
+    console.log('hit')
   }
 
   render () {
 
     const {cart} = this.props
+    const {subtotal, tax, total} = this.state
 
-    const displayTotal = this.state.total & this.state.total
+    const displaySubtotal = subtotal && <span>${subtotal}</span>
+    const displayTax = tax && <span>${tax}</span>
+    const displayTotal = total && <span>${total}</span>
 
     const displayBike = cart.map(item => {
-      console.log(item)
+      // console.log(item)
       return (
         <div className="CartItem">
           <div className="ItemImage">
@@ -54,7 +66,7 @@ class Cart extends Component {
             <h1>${item.price}</h1>
           </div>
           <div className="ItemDetails">
-            <Button>Remove</Button>
+            <Button onClick={this.deleteCart}>Remove</Button>
           </div>
         </div>
       )
@@ -77,8 +89,10 @@ class Cart extends Component {
           <div className="ShoppingCartBody">
             {displayBike}
           </div>
-          <div className="ShoppingCartFoooter">
-            {displayTotal}
+          <div className="ShoppingCartFooter">
+            <h2>Subtotal: {displaySubtotal} </h2>
+            <h2 id="taxBorder">Estimated Taxes: {displayTax}</h2>
+            <h3>{displayTotal}</h3>
           </div>
         </div>
       </div>

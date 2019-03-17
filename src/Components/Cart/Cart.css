@@ -26,6 +26,7 @@
 
 .ShoppingCartSub {
   text-align: center;
+  padding-bottom: .5rem;
 }
 
 .ShoppingCartSub h2 {
@@ -67,4 +68,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ShoppingCartFooter {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  border-top: 1px solid #ccc;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.ShoppingCartFoooter h2 {
+  padding-right: .5rem;
+}
+
+#taxBorder {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: .5rem;
+  padding-bottom: .25rem;
+}
+
+.ShoppingCartFooter h3 {
+  color: #00B7E6;
+  font-weight: bolder;
+  font-size: 1.25rem;
 }

@@ -15,13 +15,18 @@ module.exports = {
     const {user, order} = req.query
     db.get_cart([user, order])
     .then(cart => {
-      let total = cart.reduce( (total, item) => {
+
+      let cartTotal = cart.reduce( (total, item) => {
         return total + (parseInt(item.price) * item.quantity)
       }, 0)
 
+      let taxTotal = 0.06 * cartTotal
+
       let userCart = {
         cart,
-        total
+        cartTotal,
+        taxTotal,
+        orderTotal: cartTotal += taxTotal
       }
 
       res.status(200).send(userCart)
