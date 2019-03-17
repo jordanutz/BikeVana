@@ -5,6 +5,8 @@ require('dotenv').config()
 const session = require('express-session')
 const app = express();
 const axios = require('axios')
+const stripe = require("stripe")("pk_test_JI8qpjbzD43myh2S4YIEK9BE");
+
 
 /* Controllers */
 const bikesearch = require('./controllers/bikesearch_controller')
@@ -32,9 +34,10 @@ app.use(session({
       console.log('Database is kickin')
   }).catch(error => console.log(error, 'Unexpected error connecting to database'))
 
+// Auth0
 app.get('/auth/callback', (req, res) => {
   // console.log('herro from auth callback')
-  const payload = {
+    const payload = {
     client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
     client_secret: process.env.AUTH0_CLIENT_SECRET,
     code: req.query.code,
@@ -95,6 +98,23 @@ app.get('/auth/callback', (req, res) => {
         res.status(500).send('An error occurred on the server. Check terminal')
       });
   });
+
+// Stripe
+app.post("/charge", async (req, res) => {
+  try {
+    let {status} = await stripe.charges.create({
+      amount: 2000,
+      currency: "usd",
+      description: "An example charge",
+      source: req.body
+    });
+
+    res.json({status});
+  } catch (err) {
+    res.status(500).end();
+  }
+});
+
 
 // Bikes in Search Results
 app.get('/search/bikes', bikesearch.get)

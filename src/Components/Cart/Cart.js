@@ -17,7 +17,8 @@ class Cart extends Component {
     this.state = {
       subtotal: null,
       tax: null,
-      total: null
+      total: null,
+      pay: false
     }
   }
 
@@ -44,14 +45,29 @@ class Cart extends Component {
     this.getCart()
   }
 
+  togglePay = () => {
+    this.setState({
+      pay: !this.state.pay
+    })
+  }
+
   render () {
 
     const {cart} = this.props
-    const {subtotal, tax, total} = this.state
+    const {subtotal, tax, total, pay} = this.state
 
     const displaySubtotal = subtotal && <span>${subtotal}</span>
     const displayTax = tax && <span>${tax}</span>
     const displayTotal = total && <span>${total}</span>
+
+    const displayPay = pay &&
+      <StripeProvider apiKey="pk_test_JI8qpjbzD43myh2S4YIEK9BE">
+        <div className="stripe-element">
+          <Elements>
+            <CheckoutForm amount={this.state.total}/>
+          </Elements>
+        </div>
+      </StripeProvider>
 
     const displayBike = cart.map(item => {
       console.log(item)
@@ -105,8 +121,9 @@ class Cart extends Component {
             <h3>{displayTotal}</h3>
           </div>
           <div className="ShoppingCartPay">
-            <Button>Pay Now</Button>
+            <Button onClick={this.togglePay}>Pay Now</Button>
           </div>
+          {displayPay}
         </div>
       </div>
     )

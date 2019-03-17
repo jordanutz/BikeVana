@@ -99,3 +99,21 @@
   display: flex;
   justify-content: center;
 }
+
+.checkout {
+  max-width: 50%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.checkout Button {
+  margin-top: 1rem;
+  background: #00B7E6;
+  color: white;
+}
+
+.checkout Button:hover {
+  background: #00a4cf;
+  color: white;
+}

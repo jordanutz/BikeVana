@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import './CheckoutForm.css';
 import axios from 'axios';
+import {Button} from 'react-bootstrap'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -26,9 +27,10 @@ class CheckoutForm extends Component {
 
     return (
       <div className="checkout">
+        <p>Would you like to complete your purchase for ${this.props.amount}?</p><br/>
         <CardElement />
         <div className="donatesubmit-button">
-        <button onClick={this.submit}>Pay</button>
+        <Button onClick={this.submit}>Submit</Button>
         </div>
       </div>
     );
