@@ -83,3 +83,7 @@
 .singlebikereview-single span {
   padding-bottom: .5rem;
 }
+
+#description-padding {
+  padding-right: 1rem;
+}

@@ -25,7 +25,7 @@ module.exports = {
       let userCart = {
         cart,
         cartTotal,
-        taxTotal,
+        taxTotal: taxTotal.toFixed(2),
         orderTotal: cartTotal += taxTotal
       }
 
@@ -36,10 +36,9 @@ module.exports = {
   },
   deleteItem: (req, res) => {
     const db = req.app.get('db')
-    const {id} = req.params
-    console.log(id)
-    db.delete_cart(id)
-    .then(cart => console.log(cart))
+    const {cart, user, order} = req.query
+    db.delete_cart([cart, user, order])
+    .then(cart => res.status(200).send(cart))
     .catch(error => console.log(error))
   }
 }

@@ -20,7 +20,7 @@ class UserProfile extends Component {
   componentDidMount() {
     this.getReviews()
     this.getProfile()
-    this.getFavorites()
+    this.setFavorites()
   }
 
   getProfile = (id) => {
@@ -42,7 +42,7 @@ class UserProfile extends Component {
     })
   }
 
-  getFavorites = (id) => {
+  setFavorites = (id) => {
     axios.get(`/user/favorites/${this.props.match.params.id}`).then(res => {
       console.log(res.data)
       this.setState({
@@ -64,7 +64,6 @@ class UserProfile extends Component {
 
     if (this.state.userReviews) {
       displayedUserReviews = this.state.userReviews.map( (review, id) => {
-        console.log(review)
         return <SingleUserReview key={id} match={this.props.match} {...review} />
         })
     }

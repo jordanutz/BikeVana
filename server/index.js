@@ -127,7 +127,7 @@ app.delete('/search/bike/reviews/:id', reviews.delete)
 app.get('/user/order', cart.getOrder)
 app.post('/user/cart', cart.addItem)
 app.get('/user/cart', cart.getCart)
-app.delete('/user/cart/:id', cart.deleteItem)
+app.delete('/user/cart', cart.deleteItem)
 
 // Retrieves User Session
 app.get('/api/user-data', (req, res) => {

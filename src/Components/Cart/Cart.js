@@ -22,6 +22,10 @@ class Cart extends Component {
   }
 
   componentDidMount () {
+    this.getCart()
+  }
+
+  getCart = () => {
     axios.get(`/user/cart?user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
       this.props.getCart(res.data.cart)
       console.log(res.data.total)
@@ -34,9 +38,10 @@ class Cart extends Component {
   }
 
   deleteCart = (id) => {
-    axios.delete(`/user/cart/${id}`).then(res => {
-      console.log(res.data)
+    axios.delete(`/user/cart/?cart=${id}&user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
+      this.props.getCart(res.data)
     })
+    this.getCart()
   }
 
   render () {
@@ -99,7 +104,9 @@ class Cart extends Component {
             <h2 id="taxBorder">Estimated Taxes: {displayTax}</h2>
             <h3>{displayTotal}</h3>
           </div>
-          <Button>Pay Now</Button>
+          <div className="ShoppingCartPay">
+            <Button>Pay Now</Button>
+          </div>
         </div>
       </div>
     )

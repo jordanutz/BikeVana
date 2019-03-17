@@ -68,6 +68,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .ShoppingCartFooter {
@@ -76,7 +77,6 @@
   flex-direction: column;
   border-top: 1px solid #ccc;
   padding: 1rem 0;
-  border-bottom: 1px solid #ccc;
 }
 
 .ShoppingCartFoooter h2 {
@@ -93,4 +93,9 @@
   color: #00B7E6;
   font-weight: bolder;
   font-size: 1.25rem;
+}
+
+.ShoppingCartPay {
+  display: flex;
+  justify-content: center;
 }

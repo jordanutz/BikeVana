@@ -81,12 +81,11 @@ class SingleBikeReview extends Component {
 
   render () {
 
-    console.log(this.props)
+    // console.log(this.props)
 
 
     const {editReview, title, description, rating, pros, cons, uses} = this.state
     const originalRating = parseInt(this.props.rating)
-    console.log(this.props)
 
 
     const displaySubmit = editReview ?
@@ -129,7 +128,7 @@ class SingleBikeReview extends Component {
         value={editReview ? title : this.props.title}
         onChange={(e) => this.handleChange(e)}/>
 
-      const displayDescription = !editReview ? <span>{this.props.description}</span> :
+      const displayDescription = !editReview ? <span id="description-padding">{this.props.description}</span> :
       <input className={editReview ? "show-input" : "none"}
         name="description"
         type="text"
