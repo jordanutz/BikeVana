@@ -76,12 +76,12 @@ app.get('/auth/callback', (req, res) => {
         ];
         return db.create_user(userArray).then(newUser => {
           req.session.user = newUser[0];
+          db.create_order([req.session.user.id, false])
           res.redirect('/');
         }).catch(error => {
           // console.log('error in db.get_user', error);
           res.status(500).send('Unexpected error');
         })
-        return db.create_order([req.session.user.id, false])
         .catch(error => console.log(error))
       }
     }).catch(error => {
@@ -156,6 +156,7 @@ app.get('/user/order', cart.getOrder)
 app.post('/user/cart', cart.addItem)
 app.get('/user/cart', cart.getCart)
 app.delete('/user/cart', cart.deleteItem)
+app.put('/user/cart/:id', cart.clearOrder)
 
 // Retrieves User Session
 app.get('/api/user-data', (req, res) => {

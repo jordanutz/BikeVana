@@ -4,7 +4,7 @@ import './Cart.css'
 
 //Redux
 import {connect} from 'react-redux'
-import {getCart} from '../../redux/reducer'
+import {getCart, getOrder} from '../../redux/reducer'
 
 // Packages
 import {Elements, StripeProvider} from 'react-stripe-elements'
@@ -29,11 +29,11 @@ class Cart extends Component {
   getCart = () => {
     axios.get(`/user/cart?user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
       this.props.getCart(res.data.cart)
-      console.log(res.data.total)
+      // console.log(res.data.total)
       this.setState({
-        subtotal: res.data.cartTotal,
-        tax: res.data.taxTotal,
-        total: res.data.orderTotal
+        subtotal: parseInt(res.data.cartTotal),
+        tax: parseInt(res.data.taxTotal),
+        total: parseInt(res.data.orderTotal)
       })
     })
   }
@@ -51,26 +51,52 @@ class Cart extends Component {
     })
   }
 
+  closePay = () => {
+    this.setState({
+      pay: false
+    })
+  }
+
+  resetOrder = (id) => {
+
+    console.log(this.props)
+
+    let orderStatus = {
+      paid: true,
+      user: this.props.user.id
+    }
+
+    axios.put(`/user/cart/${this.props.order.id}`, orderStatus).then(res => {
+      console.log(res.data)
+      this.props.getOrder(res.data)
+    })
+  }
+
+
   render () {
 
     const {cart} = this.props
     const {subtotal, tax, total, pay} = this.state
+    console.log(subtotal, tax, total)
 
-    const displaySubtotal = subtotal && <span>${subtotal}</span>
-    const displayTax = tax && <span>${tax}</span>
-    const displayTotal = total && <span>${total}</span>
+    const displaySubtotal = subtotal ? <span>${subtotal}</span> : null
+    const displayTax = tax ? <span>${tax}</span> : null
+    const displayTotal = total ? <span>${total}</span> : null
+
+    const paymentButton = pay ? <Button onClick={this.closePay}>Close</Button> :
+      <Button onClick={this.togglePay}>Pay Now</Button>
 
     const displayPay = pay &&
       <StripeProvider apiKey="pk_test_JI8qpjbzD43myh2S4YIEK9BE">
         <div className="stripe-element">
           <Elements>
-            <CheckoutForm amount={this.state.total}/>
+            <CheckoutForm amount={this.state.total} resetOrder={this.resetOrder} order={this.props.order.id}/>
           </Elements>
         </div>
       </StripeProvider>
 
     const displayBike = cart.map(item => {
-      console.log(item)
+      // console.log(item)
       return (
         <div className="CartItem">
           <div className="ItemImage">
@@ -121,7 +147,7 @@ class Cart extends Component {
             <h3>{displayTotal}</h3>
           </div>
           <div className="ShoppingCartPay">
-            <Button onClick={this.togglePay}>Pay Now</Button>
+            {total ? paymentButton : null}
           </div>
           {displayPay}
         </div>
@@ -139,7 +165,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getCart
+  getCart,
+  getOrder
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

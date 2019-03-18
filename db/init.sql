@@ -33,7 +33,7 @@ create table bikes (
 
 create table favorites (
   id serial primary key,
-  user_id integer references newusers(id),
+  user_id integer references bikevanausers(id),
   bike_id integer references bikes(id),
   favorite boolean
 );

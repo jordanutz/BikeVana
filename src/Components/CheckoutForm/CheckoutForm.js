@@ -20,9 +20,11 @@ class CheckoutForm extends Component {
     axios.post('/charge', {id:id, amount: this.props.amount}).then(res => {
       (res.data.status) && this.setState({complete: true})
     })
+    this.props.resetOrder(this.props.order)
   }
 
   render() {
+    console.log(this.props)
     if (this.state.complete) return <h1>Thank you for your purchase!</h1>;
 
     return (

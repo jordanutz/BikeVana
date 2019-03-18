@@ -24,7 +24,12 @@ class Navigation extends Component {
 
   componentDidMount () {
     this.getUserData()
-    this.getOrder()
+  }
+
+  componentDidUpdate (prevState, prevProps) {
+    if (prevState.user !== this.props.user ) {
+      this.getOrder()
+    }
   }
 
   getUserData = () => {
@@ -35,7 +40,9 @@ class Navigation extends Component {
   }
 
   getOrder = () => {
+    // console.log(this.props.user.id)
     axios.get(`/user/order?user=${this.props.user.id}`).then(res => {
+      // console.log(res.data)
       this.props.getOrder(res.data[0])
     })
   }
@@ -48,6 +55,7 @@ class Navigation extends Component {
  }
 
   render () {
+
      // console.log(this.props)
      const userLinks = this.props.user.auth0_id ?
       <div className="login-container">
