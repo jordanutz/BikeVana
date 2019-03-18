@@ -5,7 +5,7 @@ require('dotenv').config()
 const session = require('express-session')
 const app = express();
 const axios = require('axios')
-const stripe = require("stripe")("pk_test_JI8qpjbzD43myh2S4YIEK9BE");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 
 /* Controllers */
@@ -100,18 +100,26 @@ app.get('/auth/callback', (req, res) => {
   });
 
 // Stripe
-app.post("/charge", async (req, res) => {
+app.post('/charge', async (req, res) => {
+  // console.log(req.body)
+
+  let {amount,id} = req.body
+  // console.log(amount)
+
   try {
     let {status} = await stripe.charges.create({
-      amount: 2000,
+      amount:  Math.round(amount * 100),
       currency: "usd",
       description: "An example charge",
-      source: req.body
+      source: id
     });
+
+      console.log('hit')
+
 
     res.json({status});
   } catch (err) {
-    res.status(500).end();
+    console.log(err)
   }
 });
 
