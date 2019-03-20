@@ -75,8 +75,9 @@ app.get('/auth/callback', (req, res) => {
           response.data.picture
         ];
         return db.create_user(userArray).then(newUser => {
+          let date = new Date();
           req.session.user = newUser[0];
-          db.create_order([req.session.user.id, false])
+          db.create_order([req.session.user.id, false, date])
           res.redirect('/');
         }).catch(error => {
           // console.log('error in db.get_user', error);
@@ -139,11 +140,10 @@ app.delete('/user/favorites/:id', favorites.delete)
 // Specific Bike for each Profile
 app.get('/search/bike/:id', bikeprofile.get)
 
-// User Profile Data
+// User
 app.get('/user/profile/:id', userprofile.get)
-
-// Reviews For Specific User
 app.get('/user/reviews/:id', userreviews.get)
+app.get('/user/orders/:id', userprofile.getOrders)
 
 // Reviews For Specific Bike
 app.get('/search/bike/reviews/:id', reviews.get)

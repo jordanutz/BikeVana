@@ -27,6 +27,7 @@ class Cart extends Component {
   }
 
   getCart = () => {
+    console.log(this.props)
     axios.get(`/user/cart?user=${this.props.user.id}&order=${this.props.order.id}`).then(res => {
       this.props.getCart(res.data.cart)
       // console.log(res.data.total)
@@ -57,19 +58,26 @@ class Cart extends Component {
     })
   }
 
+
   resetOrder = (id) => {
 
-    console.log(this.props)
+    let date = new Date();
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const year = date.getFullYear()
+    const formattedDate = month + '/' + day + '/' + year
 
     let orderStatus = {
       paid: true,
-      user: this.props.user.id
+      user: this.props.user.id,
+      date: formattedDate
     }
 
     axios.put(`/user/cart/${this.props.order.id}`, orderStatus).then(res => {
       console.log(res.data)
       this.props.getOrder(res.data)
     })
+    this.getCart()
   }
 
 
@@ -77,7 +85,7 @@ class Cart extends Component {
 
     const {cart} = this.props
     const {subtotal, tax, total, pay} = this.state
-    console.log(subtotal, tax, total)
+    // console.log(subtotal, tax, total)
 
     const displaySubtotal = subtotal ? <span>${subtotal}</span> : null
     const displayTax = tax ? <span>${tax}</span> : null
@@ -98,7 +106,7 @@ class Cart extends Component {
     const displayBike = cart.map(item => {
       // console.log(item)
       return (
-        <div className="CartItem">
+        <div className="CartItem" key={item.id}>
           <div className="ItemImage">
             <img src={item.image} alt="Cart Bike" />
           </div>

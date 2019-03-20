@@ -1,1 +1,1 @@
-UPDATE orders SET paid = $2 where id = $1;
+UPDATE orders SET paid = $2, date = $3 where id = $1;

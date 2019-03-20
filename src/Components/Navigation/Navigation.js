@@ -27,7 +27,19 @@ class Navigation extends Component {
   }
 
   componentDidUpdate (prevState, prevProps) {
+    this.updateUser(prevState, prevProps)
+    this.updateOrder(prevState, prevProps)
+  }
+
+
+  updateUser = (prevState, prevProps) => {
     if (prevState.user !== this.props.user ) {
+      this.getOrder()
+    }
+  }
+
+  updateOrder = (prevState, prevProps) => {
+    if (prevState.order !== this.props.order) {
       this.getOrder()
     }
   }
@@ -40,9 +52,9 @@ class Navigation extends Component {
   }
 
   getOrder = () => {
-    // console.log(this.props.user.id)
+    console.log(this.props.user.id)
     axios.get(`/user/order?user=${this.props.user.id}`).then(res => {
-      // console.log(res.data)
+      console.log(res.data)
       this.props.getOrder(res.data[0])
     })
   }

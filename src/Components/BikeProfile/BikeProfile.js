@@ -158,6 +158,8 @@ class BikeProfile extends Component {
 
   render () {
 
+    console.log(this.props)
+
     const userReview = this.props.reviews.find(review => review.user_id)
 
     const reviewbutton = this.props.user.auth0_id && !userReview ?

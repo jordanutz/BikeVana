@@ -8,7 +8,8 @@ select * from bikevanausers
 select * from bikes
 select * from favorites
 select * from reviews
-select * from testimonies
+select* from orders
+select * from cart
 
 create table bikevanausers (
   id serial primary key,
@@ -54,7 +55,8 @@ create table reviews (
 create table orders (
   id serial primary key,
   user_id integer references bikevanausers(id),
-  paid boolean
+  paid boolean,
+  date text not null
 )
 
 create table cart (
