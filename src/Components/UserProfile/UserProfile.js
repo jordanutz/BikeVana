@@ -27,6 +27,7 @@ class UserProfile extends Component {
     this.setOrders()
   }
 
+
   toggleOrders = () => {
     this.setState({
       toggleOrders: !this.state.toggleOrders
@@ -34,7 +35,7 @@ class UserProfile extends Component {
   }
 
   getProfile = (id) => {
-    console.log('hit getProfile')
+    // console.log('hit getProfile')
     axios.get(`/user/profile/${this.props.match.params.id}`).then(res => {
       // console.log(res.data)
       this.setState({
@@ -76,27 +77,27 @@ class UserProfile extends Component {
     // console.log(this.props.reviews)
     // console.log(this.state.userReviews)
     // console.log(this.state.userFavorites)
-    console.log(this.state.userOrders)
+    // console.log(this.state.userOrders)
 
     let displayedUserReviews;
     let displayedUserFavorites;
 
     if (this.state.userReviews) {
-      displayedUserReviews = this.state.userReviews.map( (review, id) => {
-        return <SingleUserReview key={id} match={this.props.match} {...review} />
+      displayedUserReviews = this.state.userReviews.map( (review) => {
+        return <SingleUserReview key={review.id} match={this.props.match} {...review} />
         })
     }
 
     if (this.state.userFavorites) {
-      displayedUserFavorites = this.state.userFavorites.map( (favorite, id) => {
+      displayedUserFavorites = this.state.userFavorites.map( (favorite) => {
         // console.log(favorite)
-        return <SingleUserFavorite key={id} match={this.props.match} {...favorite} />
+        return <SingleUserFavorite key={favorite.id} match={this.props.match} {...favorite} />
       })
     }
 
     const userOrders = this.state.userOrders.map(order => {
       return (
-        <Order key={order.order_id} {...order}/>
+        <Order key={order.cart_id} {...order}/>
       )
     })
 

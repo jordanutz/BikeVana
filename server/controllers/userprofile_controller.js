@@ -12,5 +12,8 @@ module.exports = {
     db.get_orders(id)
     .then(orders => res.status(200).send(orders))
     .catch(error => console.log(error))
+  },
+  match: (req, res) => {
+    console.log(req.params)
   }
 }

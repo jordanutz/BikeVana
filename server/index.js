@@ -174,7 +174,7 @@ app.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../build/index.html'));
 })
 
-const PORT = 1993;
+const PORT = 5800;
 app.listen (PORT, () => {
-  console.log('Soarin on Port 1993 🚀 ')
+  console.log('Soarin on Port 5800 🚀 ')
 })
