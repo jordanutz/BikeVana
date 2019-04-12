@@ -36,7 +36,7 @@ class Footer extends Component {
         </Grid>
 
         <div className='span-container'>
-          <span>© 2018, Jordan Utz, Front-End Developer | Phone: (859) 304-1476 <br/>
+          <span>© 2018, Jordan Utz, Full Stack Developer | Google Voice: (513) 620-4228 <br/>
           An Utzipher Production | All Rights Reserved.</span>
         </div>
 

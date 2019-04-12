@@ -8,5 +8,5 @@ module.exports = function(app) {
       '/search',
       '/user',
       '/charge'
-    ], { target: 'http://localhost:1993/' }));
+    ], { target: 'http://localhost:5800/' }));
   };

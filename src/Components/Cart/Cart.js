@@ -95,7 +95,7 @@ class Cart extends Component {
       <Button onClick={this.togglePay}>Pay Now</Button>
 
     const displayPay = pay &&
-      <StripeProvider apiKey="pk_test_JI8qpjbzD43myh2S4YIEK9BE">
+      <StripeProvider apiKey="pk_test_rFjEfqpAptYz9FQkd3jiUqHa00Ixah2mH5">
         <div className="stripe-element">
           <Elements>
             <CheckoutForm amount={this.state.total} resetOrder={this.resetOrder} order={this.props.order.id}/>
