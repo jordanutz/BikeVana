@@ -7,38 +7,41 @@ class Footer extends Component {
   render () {
     return (
       <div className="footer-container">
+
+        <div className="footer-max">
+        <div className='logo-container'>
+          <h2>Bikevana</h2>
+        </div> 
+
         <Grid>
           <Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} sm={4}>
               <div className="column-container">
-                <h1>About Bikevana</h1>
+                <h3>About Bikevana</h3>
                 <Link to=''>About Us</Link>
                 <Link to=''>Customer Reviews</Link>
                 <Link to=''>Bicycle Protection</Link>
-
               </div>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} sm={4}>
               <div className="column-container">
-                <h1>How It Works</h1>
+                <h3>How It Works</h3>
                 <Link to=''>How Bikevana Works</Link>
                 <Link to=''>Certified Bicycles</Link>
-                <Link to=''>Referral Program</Link><br/>
+                <Link to=''>Referral Program</Link>
               </div>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} sm={4}>
               <div className="column-container">
-                <h1>Trade/Sell</h1>
+                <h3>Trade/Sell</h3>
                 <Link to=''>Get an Appraisal</Link>
               </div>
             </Col>
           </Row>
         </Grid>
-
-        <div className='span-container'>
-          <span>© 2018, Jordan Utz, Full Stack Developer | Google Voice: (513) 620-4228 <br/>
-          An Utzipher Production | All Rights Reserved.</span>
         </div>
+
+       
 
       </div>
     )

@@ -1,5 +1,7 @@
 .searchfilter-container {
   width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
   height: auto;
 }
 
@@ -21,7 +23,9 @@
 }
 
 .searchfilter-header {
-  padding: 1em;
+  padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .searchfilter-header h1 {
@@ -31,4 +35,8 @@
 .searchfilter-container img {
   width: 1rem;
   height: 1rem;
+}
+
+.bikesearch-filter .btn-default {
+  border: none;
 }

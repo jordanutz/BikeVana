@@ -8,7 +8,24 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  height: 500px;
 }
+
+.background-search::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
+.search-text {
+  z-index: 1;
+}
+
 
 .search-container {
   min-width: 100%;
@@ -34,16 +51,20 @@
   letter-spacing: -.05em;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 767px) {
   .search-container h1 {
-    font-size: .5em;
+    font-size: 1.25em;
   }
   .search-container h2 {
-    font-size: 1em;
+    font-size: 1.15em;
+  }
+
+  .search-container {
+    padding: 2em;
   }
 }
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 767px) {
   .search-container h1 {
     font-size: 1.35em;
   }

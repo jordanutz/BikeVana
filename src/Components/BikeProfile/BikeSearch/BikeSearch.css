@@ -5,10 +5,14 @@
 .bikesearch-search {
   width: 100%;
   height: auto;
-  padding: 3em;
   display: flex;
   justify-content: center;
+
+}
+
+.bikesearch-parent {
   background: white;
+  padding: 3rem;
 }
 
 #button-width {
@@ -26,23 +30,64 @@
 }
 
 .bikesearch-filter {
-  width: 18%;
-  min-height: 100vh;
+  width: 100%;
   background: rgb(244, 248, 250);
-  border-right: 1px solid #D8D8D8;
-  border-top: 1px solid #D8D8D8;
+}
+
+.bikesearch-main > div {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .bikesearch-container {
-  width: 88%;
+  width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 15px;
-  border-top: 1px solid #D8D8D8;
-  padding: 2em;
+  padding: 0 2rem;
+}
+
+.no-results {
+  text-align: center;
+}
+
+.no-results h2 {
+  margin-bottom: .25em;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 1.75em;
+  color: rgb(24, 53, 88);
+}
+
+.no-results h3 {
+  font-size: 1.25em;
+  color: rgb(24, 53, 88);
+  font-weight: bolder;
 }
 
 .bikesearch-flex {
-  display: flex;
+  display:  grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+@media screen and (max-width: 767px) {
+  .bikesearch-parent {
+    padding: 1rem;
+  }
+
+  .mainsearch-button {
+    width: 40%;
+    height: 70px !important;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1199px) {
+  .bikesearch-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bikesearch-input {
+  height: 70px !important;
 }

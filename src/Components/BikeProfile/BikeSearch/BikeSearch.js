@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import BikeModule from './BikeModule/BikeModule'
 import SearchFilter from './SearchFilter/SearchFilter'
 import './BikeSearch.css'
-import {Button} from 'react-bootstrap'
+import {Button, Grid, Row, Col} from 'react-bootstrap'
 
 class BikeSearch extends Component {
   constructor() {
@@ -21,16 +21,19 @@ class BikeSearch extends Component {
   }
 
   getSearch = () => {
-    // console.log('this is from the bike search',this.props.location.state)
+    this.setState({
+      searchInput: this.props.location.state[0].name
+    })
+
     axios.get(`/search/input/bikes/${this.props.location.state}`).then(res => {
-      // console.log(res.data)
+      console.log(res.data)
       this.props.getBikeSearch(res.data)
     })
   }
 
   getBikes = () => {
     axios.get('/search/bikes').then( res => {
-      // console.log(res.data)
+      console.log(res.data)
       this.props.getBikeSearch(res.data)
     })
   }
@@ -43,34 +46,69 @@ class BikeSearch extends Component {
 
   render () {
     const {bikeSearch} = this.props
+    let displayedBikes 
 
-    const displayedBikes = bikeSearch.map( bike => {
-      // console.log('the bike!', bike.id)
-      return (
-        <div key={bike.id}>
-          <Link to={`/search/bikes/${bike.id}`}><BikeModule {...bike} /></Link>
-        </div>
-      )
-    })
+    if (bikeSearch.length) { 
+      displayedBikes = bikeSearch.map( bike => {
+        // console.log('the bike!', bike.id)
+        return (
+          <div key={bike.id}>
+            <Link to={`/search/bikes/${bike.id}`}><BikeModule {...bike} /></Link>
+          </div>
+        )
+      })
+    } else {
+      displayedBikes = null
+    }
+
+   
 
     return (
       <div className="bikesearch-main">
-        <div className="bikesearch-search">
-          <input
-            className="bikesearch-input"
-            placeholder="Search brands, models, or keywords"
-            onChange={(e) => this.handleSearchInput(e)} />
-          <Button id="button-width" className="mainsearch-button">Go!</Button>
-        </div>
 
-        <div className="bikesearch-flex">
-        <div className="bikesearch-filter">
-          <SearchFilter />
+        <div className="bikesearch-parent">
+          <Grid>
+            <Row>
+              <Col xs={12}>
+                <div className="bikesearch-search">
+                  <input
+                    className="bikesearch-input"
+                    placeholder="Search brands, models, or keywords"
+                    onChange={(e) => this.handleSearchInput(e)} 
+                    value={this.state.searchInput}
+                  />
+                  <Button id="button-width" className="mainsearch-button">Go!</Button>
+                </div>
+              </Col>
+            </Row>
+          </Grid>
         </div>
-        <div className="bikesearch-container">
-          {displayedBikes}
-        </div>
-        </div>
+        <Grid>
+          <Row>
+            <Col xs={0} sm={0} md={3} lg={3}>
+              <div className="bikesearch-filter">
+                <SearchFilter />
+              </div>
+            </Col>
+
+            <Col xs={12} sm={12} md={9} lg={9} style={{padding: '0'}}>
+  
+                {
+                displayedBikes ? 
+                  <div className="bikesearch-container">
+                    {displayedBikes} 
+                  </div>
+                  : 
+                  <section className="no-results">
+                    <h2>WE'RE SORRY!</h2>
+                    <h3>No Matching Bicycles Found.</h3>
+                  </section> 
+                } 
+  
+            </Col>
+          </Row>
+        </Grid>
+
       </div>
     )
   }

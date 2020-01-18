@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './SearchFilter.css'
 import {Button, Collapse, Well, Checkbox} from 'react-bootstrap'
 import Arrow from './assets/down-arrow.svg'
+import Filter from './assets/filter.svg'
 
 class SearchFilter extends Component {
   constructor() {
@@ -15,13 +16,12 @@ class SearchFilter extends Component {
       openYear: false
     }
   }
-
-
   render () {
     return (
       <div className="searchfilter-container">
         <div className="searchfilter-header">
           <h1>Filters</h1>
+          <img src={Filter} />
         </div>
 
         <Button id="filter-buttons" onClick={ () => this.setState({ openBrand: !this.state.openBrand})}>Brand <img src={Arrow} alt="Dropdown Arrow" /> </Button>

@@ -6,6 +6,10 @@
   bottom: 56px;
 }
 
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: rgb(24, 53, 88);
+}
+
 .nav-tabs {
   display: flex;
   justify-content: space-around;
@@ -26,7 +30,7 @@
 .mainsearch-input {
   margin-bottom: .5em;
   width: 550px;
-  height: 3.5em;
+  height: 70px;
   padding: .5em;
 }
 

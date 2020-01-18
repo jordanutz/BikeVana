@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Image} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Grid, Row, Col} from 'react-bootstrap';
 import './Navigation.css'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -30,7 +30,6 @@ class Navigation extends Component {
     this.updateUser(prevState, prevProps)
     this.updateOrder(prevState, prevProps)
   }
-
 
   updateUser = (prevState, prevProps) => {
     if (prevState.user !== this.props.user ) {
@@ -81,6 +80,9 @@ class Navigation extends Component {
     return (
       <div>
         <div className="header-container">
+          <Grid>
+            <Row>
+              <Col xs={12}>
           <div className="header-column">
             <div className="header-links">
             <NavDropdown
@@ -113,6 +115,10 @@ class Navigation extends Component {
             </NavDropdown>
           </div>
         </div>
+        </Col>
+        </Row>
+        </Grid>
+
       </div>
 
       <div className="navigation-container" >
@@ -120,7 +126,7 @@ class Navigation extends Component {
           <Navbar.Header className='navheader-container'>
             <Navbar.Brand>
               <div className="navheader-logo">
-                <Image className="navigation-logo" src='http://www.fujibikes.com/usa/img/bikes/tech-block/endurance-geo.png' circle />
+                
                 <Link to="/">BikeVana</Link>
               </div>
             </Navbar.Brand>
@@ -130,6 +136,9 @@ class Navigation extends Component {
             <Nav>
               <NavItem eventKey={1} componentClass={Link} href='/bikes' to='/bikes'>
                 Search Bikes
+              </NavItem>
+              <NavItem eventKey={2} componentClass={Link} href='#' to='#'>
+                Sell | Trade
               </NavItem>
             </Nav>
             <Nav pullRight>

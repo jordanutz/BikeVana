@@ -7,14 +7,17 @@
   color: white;
   height: 3em;
   font-size: .75em;
+  display: flex;
+  align-items: center;
 }
 
 .header-column {
-  width: 85%;
+  max-width: 960px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 100%;
+  margin: 0 auto;
 }
 
 .header-links {
@@ -22,7 +25,7 @@
   justify-content: space-evenly;
   height: 100%;
   align-items: center;
-  width: 24%;
+
 }
 
 a {
@@ -97,7 +100,7 @@ a:focus {
   font-weight: 500;
   margin: 0;
   padding: .60em;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.12), 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.05), 0px 4px 5px 0px rgba(0, 0, 0, 0.05), 0px 1px 10px 0px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-brand {
@@ -175,6 +178,9 @@ a:focus {
   border: none;
 }
 
+.dropdown {
+  margin-right: 40px;
+}
 
 @media screen and (max-width: 768px) {
   .header-container {

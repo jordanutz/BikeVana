@@ -1,29 +1,47 @@
 .footer-container {
   width: 100%;
-  height: auto;
-  background: rgb(24, 53, 88);
+  min-height: 250px;
+  background-image: url('https://i.ibb.co/ChkYcQ5/164063578-bicycle-wallpapers.jpg');
   color: white;
   font-family: 'Raleway', sans-serif;
-  padding: 2em;
-  font-size: .75em;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
 }
 
-.footer-container h1{
-  font-size:  1em;
+.footer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(24, 53, 88, .9);
+}
+
+.footer-container h3 {
   text-transform: uppercase;
   font-weight: bolder;
+  margin-bottom: .5rem;
+
 }
 
 .footer-row {
-  width: 60%;
+  width: 100%;
 }
 
 .column-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   font-weight: bolder;
+}
+
+.column-container a {
+  font-size: .95rem;
 }
 
 a:hover {
@@ -31,15 +49,60 @@ a:hover {
   text-decoration: none;
 }
 
-.span-container {
-  width: 100%;
-  height: auto;
-  text-align: center;
-  margin-top: 1em;
+.logo-container h2 {
+  font-family: "Tokyo 2097";
+  font-size: 5rem;
+  color: #f7f7f7;
+  z-index: 9;
+  margin-right: 60px;
 }
 
-@media screen and (max-width: 760px) {
-  .span-container {
-    font-size: .6rem;
+.logo-container {
+  height: auto;
+  z-index: 9;
+}
+
+.footer-container .container {
+  max-width: 850px;
+}
+
+.footer-max {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .footer-max {
+    flex-direction: column;
+  }
+
+  .logo-container h2 {
+    margin-right: 0;
+    margin-bottom: 25px;
+    font-size: 3.5rem;
+  }
+
+  .column-container {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .logo-container h2 {
+    font-size: 3rem;
+    
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .footer-container .container {
+    max-width: 750px;
+  }
+
+  .logo-container h2 {
+    font-size: 4rem;
+    margin-right: 50px;
   }
 }
